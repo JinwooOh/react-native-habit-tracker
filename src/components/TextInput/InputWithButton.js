@@ -6,7 +6,7 @@ const InputWithButton = ({ onPress, buttonText, ...props }) => (
   <View style={styles.container}>
     <TextInput
       style={styles.input}
-      autoFocus="true"
+      autoFocus
       underlineColorAndroid="transparent"
       {...props}
     />

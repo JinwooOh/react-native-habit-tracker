@@ -18,6 +18,7 @@ class AddHabit extends Component {
     this.props.dispatch(
       addNewHabit({
         name: this.state.inputHabit,
+        done: false,
       })
     );
     this.setState({ inputHabit: '' });

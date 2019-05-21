@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { HabitList } from '../components/HabitList';
+import { Calendar } from '../components/Calendar';
 
 class Home extends Component {
-  handleOptionsPress = () => {
+  handleAddNewHabit = () => {
     const { navigation } = this.props;
     navigation.navigate('AddHabit');
   };
@@ -14,7 +15,8 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        <Header onPress={this.handleOptionsPress} />
+        <Header onPress={this.handleAddNewHabit} />
+        <Calendar />
         <HabitList />
       </Container>
     );

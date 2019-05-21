@@ -1,11 +1,18 @@
 import React from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 const Header = ({ onPress }) => (
   <SafeAreaView style={styles.container}>
-    <Text>"I am a header"</Text>
-    <Button onPress={onPress} title="Add Habit" />
+    <Button
+      type="clear"
+      icon={
+        <Icon type="ionicon" name="ios-add-circle" color="#517fa4" size={32} />
+      }
+      onPress={onPress}
+    />
   </SafeAreaView>
 );
 export default Header;
