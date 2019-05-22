@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import { View, Button, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { InputWithButton } from '../components/TextInput';
 import { addNewHabit } from '../actions/habits';
 import { Container } from '../components/Container';
+import { RepeatSelector } from '../components/RepeatSelector';
 
 class AddHabit extends Component {
   state = {
-    inputHabit: '',
+    name: '',
+    repeat: '',
+    startDate: moment().format('MMM Do YY'),
   };
 
   handleChangeText = input => {
-    this.setState({ inputHabit: input });
+    this.setState({ name: input });
+  };
+
+  handleRepeatSelector = input => {
+    console.log(input);
+    this.setState({ repeat: input });
   };
 
   handlePressAddHabit = () => {
     this.props.dispatch(
       addNewHabit({
-        name: this.state.inputHabit,
+        ...this.state,
         done: false,
       })
     );
-    this.setState({ inputHabit: '' });
+    this.setState({ name: '' });
     const { navigation } = this.props;
     navigation.navigate('Home');
   };
@@ -32,9 +41,10 @@ class AddHabit extends Component {
         <InputWithButton
           placeholder="Name"
           buttonText="Button"
-          defaultValue={this.state.inputHabit}
+          defaultValue={this.state.name}
           onChangeText={this.handleChangeText}
         />
+        <RepeatSelector handleRepeatSelector={this.handleRepeatSelector} />
         <TouchableHighlight onPress={this.handlePressAddHabit}>
           <Button onPress={this.handlePressAddHabit} title="Add Habit" />
         </TouchableHighlight>

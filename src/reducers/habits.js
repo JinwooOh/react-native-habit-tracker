@@ -6,13 +6,15 @@ const initialState = {
   habitList: [
     {
       name: 'meditation',
-      done: false,
+      repeat: 'monday',
       startDate: moment().format('MMM Do YY'),
+      done: false,
     },
     {
       name: 'drink water',
-      done: false,
+      repeat: 'monday',
       startDate: moment().format('MMM Do YY'),
+      done: false,
     },
   ],
 };
