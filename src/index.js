@@ -7,13 +7,13 @@ import Home from './screens/Home';
 import Settings from './screens/Settings';
 import AddHabit from './screens/AddHabit';
 import Progress from './screens/Progress';
+import SelectRepeat from './screens/SelectRepeat';
 
 const HomeStack = createStackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
       header: () => null,
-      headerTitle: '',
     },
   },
   AddHabit: {
@@ -25,13 +25,16 @@ const HomeStack = createStackNavigator({
       },
     },
   },
+  SelectRepeat: {
+    screen: SelectRepeat,
+  },
 });
+
 const SettingStack = createStackNavigator({
   Settings: {
     screen: Settings,
     navigationOptions: {
       header: () => null,
-      headerTitle: 'Settings',
     },
   },
 });
@@ -41,7 +44,6 @@ const ProgressStack = createStackNavigator({
     screen: Progress,
     navigationOptions: {
       header: () => null,
-      headerTitle: 'Progress',
     },
   },
 });

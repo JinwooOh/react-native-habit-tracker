@@ -3,20 +3,30 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 const INPUT_HEIGHT = 48;
 const BORDER_RADIUS = 4;
+
 export default EStyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: 'red',
-  },
-  btnContainer: {
     backgroundColor: '$white',
     height: INPUT_HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
     borderRadius: BORDER_RADIUS,
     marginHorizontal: 11,
     marginVertical: 11,
+  },
+  buttonContainer: {
+    height: INPUT_HEIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '$white',
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderBottomLeftRadius: BORDER_RADIUS,
+  },
+  buttonText: {
+    fontWeight: '600',
+    fontSize: 20,
+    paddingHorizontal: 16,
+    color: '$primaryBlue',
   },
   input: {
     flex: 1,

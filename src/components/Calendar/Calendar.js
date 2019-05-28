@@ -5,10 +5,15 @@ import moment from 'moment';
 import CalendarStrip from 'react-native-calendar-strip';
 
 class Calendar extends Component {
+  onDateSelected = date => {
+    console.log(date.format('MMM Do YY'));
+  };
+
   render() {
     return (
       <View>
         <CalendarStrip
+          onDateSelected={date => this.onDateSelected(date)}
           calendarAnimation={{ type: 'sequence', duration: 100 }}
           style={{
             height: 90,
