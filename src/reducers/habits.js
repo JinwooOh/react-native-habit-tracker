@@ -2,18 +2,17 @@ import moment from 'moment';
 import { ADD_NEW_HABIT, CHECK_HABIT } from '../actions/habits';
 
 const initialState = {
-  selectedDate: moment().format('MMM Do YY'),
   habitList: [
     {
       name: 'meditation',
       repeat: 'monday',
-      startDate: moment().format('MMM Do YY'),
+      startDate: moment(),
       done: false,
     },
     {
       name: 'drink water',
       repeat: 'monday',
-      startDate: moment().format('MMM Do YY'),
+      startDate: moment(),
       done: false,
     },
   ],
@@ -31,6 +30,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         habitList: state.habitList.map((item, index) => {
           if (item.name === action.habitName) {
+            const newCheckList = [...item.checkList];
+            console.log(action.date.format('MM/DD/Y'));
             return {
               ...item,
               done: !item.done,

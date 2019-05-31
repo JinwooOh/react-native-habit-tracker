@@ -6,7 +6,8 @@ export const addNewHabit = habitToAdd => ({
   habitToAdd,
 });
 
-export const checkHabit = habitName => ({
+export const checkHabit = (habitName, date) => ({
   type: CHECK_HABIT,
   habitName,
+  date,
 });

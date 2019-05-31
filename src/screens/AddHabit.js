@@ -12,8 +12,8 @@ import { ConfirmButton } from '../components/ConfirmButton';
 class AddHabit extends Component {
   state = {
     name: '',
-    repeat: '',
-    startDate: moment(new Date()).format('MMM Do YY'),
+    startDate: moment(new Date()),
+    checkDate: null,
     isDaily: true,
     dailyInfo: [true, true, true, true, true, true, true], // ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     weeklyInfo: 1,
@@ -37,7 +37,6 @@ class AddHabit extends Component {
     this.props.dispatch(
       addNewHabit({
         name: this.state.name,
-        repeat: this.state.repeat,
         startDate: this.state.startDate,
         isDaily: this.state.isDaily,
         dailyInfo: this.state.dailyInfo,
@@ -73,9 +72,8 @@ class AddHabit extends Component {
   };
 
   handleDatePicked = date => {
-    this.setState({ startDate: moment(date).format('MMM Do YY') });
+    this.setState({ startDate: moment(date) });
     this.hideDateTimePicker();
-    console.log(this.state.startDate);
   };
 
   render() {
@@ -89,7 +87,7 @@ class AddHabit extends Component {
         />
 
         <StartDate
-          value={this.state.startDate}
+          value={this.state.startDate.format('MMM Do YY')}
           isDateTimePickerVisible={this.state.isDateTimePickerVisible}
           showDateTimePicker={this.showDateTimePicker}
           hideDateTimePicker={this.hideDateTimePicker}

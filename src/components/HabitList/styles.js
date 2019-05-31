@@ -6,14 +6,18 @@ export default EStyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '$lightGray',
+    padding: 5,
   },
-  habitItem: {
+  habitItemContainer: {
     marginTop: 5,
-    flexDirection: 'row',
-    borderBottomWidth: 2,
+    // flexDirection: 'row',
+    borderBottomWidth: 3,
     backgroundColor: '$white',
     borderRadius: 5,
-    borderBottomColor: '$lightGray',
+    borderBottomColor: '$border',
+  },
+  habitItem: {
+    flexDirection: 'row',
     padding: 5,
   },
   textBox: {
@@ -21,7 +25,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#696969',
+    color: '$inputText',
     paddingLeft: 10,
     fontSize: 20,
     fontWeight: '500',
