@@ -39,8 +39,9 @@ const HabitList = props => {
           style={styles.habitItemContainer}
           autoClose
           right={swipeoutBtns}
+          key={habit.name}
         >
-          <View key={habit.name} style={styles.habitItem}>
+          <View style={styles.habitItem}>
             <Button
               type="clear"
               icon={
