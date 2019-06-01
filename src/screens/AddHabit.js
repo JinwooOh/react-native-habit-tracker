@@ -17,7 +17,7 @@ class AddHabit extends Component {
     isDaily: true,
     dailyInfo: [true, true, true, true, true, true, true], // ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     weeklyInfo: 1,
-    checkList: {},
+    checkList: [],
     isDateTimePickerVisible: false,
   };
 

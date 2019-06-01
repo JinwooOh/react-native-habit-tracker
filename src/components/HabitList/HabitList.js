@@ -35,6 +35,7 @@ const HabitList = props => {
   return (
     <View style={styles.container}>
       {showHabits(props.date, props.habitList).map(habit => (
+        // console.log(habit.checkList[props.date.format('MM/DD/Y')]);
         <Swipeout
           style={styles.habitItemContainer}
           autoClose
@@ -45,7 +46,7 @@ const HabitList = props => {
             <Button
               type="clear"
               icon={
-                habit.done ? (
+                habit.checkList.includes(props.date.format('MM/DD/Y')) ? (
                   <Icon
                     type="ionicon"
                     name="ios-checkmark-circle"
