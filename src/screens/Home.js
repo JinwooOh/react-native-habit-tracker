@@ -17,6 +17,12 @@ class Home extends Component {
     navigation.navigate('AddHabit');
   };
 
+  handleViewHabit = habit => {
+    const { navigation } = this.props;
+    // pass haibt as props
+    navigation.navigate('ViewHabit', { habit });
+  };
+
   onDateSelected = date => {
     this.setState({ selectedDate: date });
   };
@@ -29,7 +35,10 @@ class Home extends Component {
           onDateSelected={this.onDateSelected}
           selectedDate={this.state.selectedDate}
         />
-        <HabitList date={this.state.selectedDate} />
+        <HabitList
+          date={this.state.selectedDate}
+          handleViewHabit={this.handleViewHabit}
+        />
       </Container>
     );
   }

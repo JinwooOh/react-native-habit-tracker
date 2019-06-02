@@ -8,6 +8,7 @@ import Settings from './screens/Settings';
 import AddHabit from './screens/AddHabit';
 import Progress from './screens/Progress';
 import SelectRepeat from './screens/SelectRepeat';
+import ViewHabit from './screens/ViewHabit';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -27,6 +28,9 @@ const HomeStack = createStackNavigator({
   },
   SelectRepeat: {
     screen: SelectRepeat,
+  },
+  ViewHabit: {
+    screen: ViewHabit,
   },
 });
 
