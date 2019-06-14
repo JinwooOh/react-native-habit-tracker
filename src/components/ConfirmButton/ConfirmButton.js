@@ -7,7 +7,7 @@ import styles from './styles';
 const ConfirmButton = props => (
   <Button
     buttonStyle={styles.button}
-    title="Add Habit"
+    title={props.title}
     onPress={props.onPress}
     disabled={props.disabled}
   />

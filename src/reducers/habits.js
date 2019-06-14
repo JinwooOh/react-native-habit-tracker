@@ -1,21 +1,17 @@
 import moment from 'moment';
 import { isDateInCheckList } from '../util/isDateInCheckList';
-import { ADD_NEW_HABIT, CHECK_HABIT, addNewHabit } from '../actions/habits';
+import { ADD_NEW_HABIT, CHECK_HABIT, DELETE_HABIT } from '../actions/habits';
 
 const initialState = {
   habitList: [
-    // {
-    //   name: 'meditation',
-    //   repeat: 'monday',
-    //   startDate: moment(),
-    //   done: false,
-    // },
-    // {
-    //   name: 'drink water',
-    //   repeat: 'monday',
-    //   startDate: moment(),
-    //   done: false,
-    // },
+    {
+      name: 'Drink Coffee',
+      isDaily: false,
+      checkList: [],
+      dailyInfo: [],
+      weeklyInfo: 1,
+      startDate: moment(),
+    },
   ],
 };
 
@@ -54,6 +50,19 @@ const reducer = (state = initialState, action) => {
             };
           }
           return item;
+        }),
+      };
+    case DELETE_HABIT:
+      return {
+        ...state,
+        habitList: state.habitList.filter((item, index) => {
+          // Remove item "X"
+          // alternatively: you could look for a specific index
+          if (item.name === action.habit.name) {
+            return false;
+          }
+          // Every other item stays
+          return true;
         }),
       };
 

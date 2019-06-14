@@ -104,6 +104,7 @@ class AddHabit extends Component {
         />
 
         <ConfirmButton
+          title="Add Habit"
           disabled={this.state.name.length === 0}
           onPress={this.handlePressAddHabit}
         />

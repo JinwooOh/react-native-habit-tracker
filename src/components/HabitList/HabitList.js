@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swipeout from 'react-native-swipeout';
+// import SvgUri from 'react-native-svg-uri';
+// import Smile from '../../img/smile.svg';
 import styles from './styles';
 import { checkHabit } from '../../actions/habits';
 import { showHabits } from '../../util/showHabits';

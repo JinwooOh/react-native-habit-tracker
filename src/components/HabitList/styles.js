@@ -2,7 +2,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
   container: {
-    // flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '$lightGray',
@@ -30,5 +29,4 @@ export default EStyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
   },
-  icon: {},
 });
