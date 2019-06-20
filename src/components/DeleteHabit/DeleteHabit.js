@@ -1,11 +1,31 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { ConfirmButton } from '../ConfirmButton';
 import { deleteHabit } from '../../actions/habits';
 
 const handleDeleteHabit = props => {
-  props.dispatch(deleteHabit(props.habit));
+  console.log(props);
+  Alert.alert(
+    'Delete Habit',
+    'Are you sure?',
+    [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: () => {
+          props.dispatch(deleteHabit(props.habit));
+          const { navigation } = props;
+          navigation.navigate('Home');
+        },
+      },
+    ],
+    { cancelable: false }
+  );
 };
 
 const DeleteHabit = props => (

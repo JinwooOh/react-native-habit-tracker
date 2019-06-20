@@ -58,9 +58,8 @@ const DetailHabit = props => (
       /> */}
       </View>
     </View>
-    <View stlyes={styles.deleteBtn}>
-      <DeleteHabit habit={props.habit} />
-    </View>
+
+    <DeleteHabit habit={props.habit} {...props} />
   </View>
 );
 

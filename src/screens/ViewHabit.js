@@ -39,6 +39,7 @@ export default class ViewHabit extends Component {
       <View>
         <Text style={ViewHabitStyles.title}>{name}</Text>
         <DetailHabit
+          {...this.props}
           habit={habit}
           done={weeklyGoal.done}
           goal={weeklyGoal.goal}
