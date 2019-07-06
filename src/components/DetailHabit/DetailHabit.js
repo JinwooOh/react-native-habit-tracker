@@ -2,19 +2,20 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
 import { ProgressCircle } from 'react-native-svg-charts';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import styles from './styles';
 import { DeleteHabit } from '../DeleteHabit';
 
 const calTotalPossibility = habitInfo => {
   const total = 0;
-  const { startDate } = habitInfo;
+  const { startDate, dailyInfo, checkList } = habitInfo;
 
   const start = startDate.startOf('days');
   const end = moment().startOf('days');
 
   let totalDays = 0;
 
-  habitInfo.dailyInfo.forEach((info, index) => {
+  dailyInfo.forEach((info, index) => {
     if (info === true) {
       let current = start.clone();
       if (current.isoWeekday() <= index) {
@@ -30,9 +31,24 @@ const calTotalPossibility = habitInfo => {
     }
   });
 
-  const possibility = Math.ceil((habitInfo.checkList.length / totalDays) * 100);
+  const possibility = Math.ceil((checkList.length / totalDays) * 100);
   return possibility >= 100 ? 100 : possibility;
 };
+
+const checkedDateForCalendar = checkedDate => {
+  const result = {};
+  checkedDate.map(
+    date =>
+      (result[date.format('YYYY-MM-DD')] = {
+        marked: true,
+        dotColor: 'red',
+        activeOpacity: 0,
+      })
+  );
+  console.log(result);
+  return result;
+};
+
 const DetailHabit = props => (
   <View>
     <View style={styles.infoContainer}>
@@ -51,14 +67,21 @@ const DetailHabit = props => (
       <View style={styles.card}>
         <Text style={styles.text}>Complete Ratio</Text>
         <Text style={styles.infoText}>{calTotalPossibility(props.habit)}%</Text>
-        {/* <ProgressCircle
-        style={{ height: 100 }}
-        progress={calTotalPossibility(props.habit) / 100}
-        progressColor="#4F6D7A"
-      /> */}
       </View>
     </View>
-
+    <Calendar
+      // https://www.npmjs.com/package/react-native-calendars
+      onDayPress={day => {
+        console.log('selected day', day);
+      }}
+      monthFormat="MMM yyyy"
+      onMonthChange={month => {
+        console.log('month changed', month);
+      }}
+      disableMonthChange
+      firstDay={0}
+      markedDates={checkedDateForCalendar(props.habit.checkList)}
+    />
     <DeleteHabit habit={props.habit} {...props} />
   </View>
 );
