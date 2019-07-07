@@ -42,6 +42,7 @@ class AddHabit extends Component {
         dailyInfo: this.state.dailyInfo,
         weeklyInfo: this.state.weeklyInfo,
         checkList: this.state.checkList,
+        completionRate: 0,
       })
     );
     this.setState({ name: '' });

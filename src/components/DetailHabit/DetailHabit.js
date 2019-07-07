@@ -1,39 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
-import { ProgressCircle } from 'react-native-svg-charts';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import styles from './styles';
 import { DeleteHabit } from '../DeleteHabit';
-
-const calTotalPossibility = habitInfo => {
-  const total = 0;
-  const { startDate, dailyInfo, checkList } = habitInfo;
-
-  const start = startDate.startOf('days');
-  const end = moment().startOf('days');
-
-  let totalDays = 0;
-
-  dailyInfo.forEach((info, index) => {
-    if (info === true) {
-      let current = start.clone();
-      if (current.isoWeekday() <= index) {
-        current = current.isoWeekday(index);
-      } else {
-        current.add(1, 'weeks').isoWeekday(index);
-      }
-      while (current.isSameOrBefore(end)) {
-        console.log(current.toString());
-        current.day(7 + index);
-        totalDays += 1;
-      }
-    }
-  });
-
-  const possibility = Math.ceil((checkList.length / totalDays) * 100);
-  return possibility >= 100 ? 100 : possibility;
-};
+import calCompletionRate from '../../util/calCompletionRate';
 
 const checkedDateForCalendar = checkedDate => {
   const result = {};
@@ -65,8 +36,8 @@ const DetailHabit = props => (
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.text}>Complete Ratio</Text>
-        <Text style={styles.infoText}>{calTotalPossibility(props.habit)}%</Text>
+        <Text style={styles.text}>Completion Rate</Text>
+        <Text style={styles.infoText}>{props.habit.completionRate || 0}%</Text>
       </View>
     </View>
     <Calendar

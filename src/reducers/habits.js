@@ -1,4 +1,5 @@
 import moment from 'moment';
+import calCompletionRate from '../util/calCompletionRate';
 import { isDateInCheckList } from '../util/isDateInCheckList';
 import { ADD_NEW_HABIT, CHECK_HABIT, DELETE_HABIT } from '../actions/habits';
 
@@ -11,6 +12,7 @@ const initialState = {
       dailyInfo: [],
       weeklyInfo: 1,
       startDate: moment(),
+      completionRate: 0,
     },
   ],
 };
@@ -47,6 +49,7 @@ const reducer = (state = initialState, action) => {
               ...item,
               done: !item.done,
               checkList: [...newCheckList],
+              completionRate: calCompletionRate(item, newCheckList),
             };
           }
           return item;
