@@ -11,26 +11,27 @@ import {
 
 const ProgressCharts = props => {
   console.log(props.habitList);
-  const getFirstDay = props.habitList.reduce((acc, cur) => {
+  const thisWeek = props.habitList.reduce((acc, cur) => {
     if (cur.startDate.isBefore(acc.startDate)) {
       return cur;
     }
     return acc;
-  });
+  }, []);
+  console.log(thisWeek);
 
   const chartConfig = {
-    backgroundColor: '#e26a00',
-    backgroundGradientFrom: '#fb8c00',
-    backgroundGradientTo: '#ffa726',
-    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    backgroundColor: 'black',
+    backgroundGradientFrom: 'white',
+    backgroundGradientTo: 'white',
+    color: () => 'black',
     strokeWidth: 2, // optional, default 3
   };
   const data = {
     labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
     datasets: [
       {
-        data: [20, 45, 28, 80, 99, 43],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+        data: [0.9, 0.5, 1, 0.2, 1, 0.8],
+        color: (opacity = 1) => `rgba(255, 165, 0, ${opacity})`, // optional
         // strokeWidth: 2 // optional
       },
     ],
@@ -38,17 +39,13 @@ const ProgressCharts = props => {
   return (
     <View>
       <Text>Completion Rate</Text>
+
       <LineChart
         data={data}
-        width={Dimensions.get('window').width * 0.88} // from react-native
+        width={Dimensions.get('window').width}
         height={220}
-        yAxisLabel="$"
         chartConfig={chartConfig}
-        bezier
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
+        withDots={false}
       />
     </View>
   );

@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from '../components/Container';
 import { ProgressCharts } from '../components/ProgressCharts';
+import { SelectHabit } from '../components/SelectHabit';
 
 class Progress extends Component {
+  state = {
+    selectedHabit: {},
+  };
+
+  handleSelectedHabit = habit => {
+    this.setState({ selectedHabit: { ...habit } });
+  };
+
   render() {
     const { habitList } = this.props;
     return (
-      <Container>
+      <ScrollView>
         <SafeAreaView>
           <Text> Progress 😃 </Text>
+          <SelectHabit
+            habits={habitList}
+            handleSelectedHabit={this.handleSelectedHabit}
+          />
           <ProgressCharts habitList={habitList} />
         </SafeAreaView>
-      </Container>
+      </ScrollView>
     );
   }
 }

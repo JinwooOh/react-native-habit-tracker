@@ -63,9 +63,9 @@ const RootStack = createBottomTabNavigator({
   Progress: {
     screen: ProgressStack,
   },
-  Settings: {
-    screen: SettingStack,
-  },
+  // Settings: {
+  //   screen: SettingStack,
+  // },
 });
 
 // const App = createAppContainer(RootStack);

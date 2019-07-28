@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  Button,
-} from 'react-native';
+import { View, TextInput, Button } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import styles from './styles';
 

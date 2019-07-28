@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Swipeout from 'react-native-swipeout';
+// import Swipeout from 'react-native-swipeout';
 // import SvgUri from 'react-native-svg-uri';
 // import Smile from '../../img/smile.svg';
 import styles from './styles';
@@ -40,10 +40,10 @@ const HabitList = props => {
   return (
     <View style={styles.container}>
       {showHabits(props.date, props.habitList).map(habit => (
-        <Swipeout
+        <View
           style={styles.habitItemContainer}
-          autoClose
-          right={swipeoutBtns}
+          // autoClose
+          // right={swipeoutBtns}
           key={habit.name}
         >
           <View style={styles.habitItem}>
@@ -60,7 +60,7 @@ const HabitList = props => {
               <Text style={styles.text}>{habit.name}</Text>
             </TouchableOpacity>
           </View>
-        </Swipeout>
+        </View>
       ))}
     </View>
   );

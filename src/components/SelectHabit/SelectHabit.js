@@ -1,0 +1,67 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
+
+const SelectHabit = props => {
+  const { habits } = props;
+  const [habitSelector, setSelect] = useState();
+
+  const habitList = [];
+  const getHabitList = () => {
+    habits.forEach((habit, index) => {
+      const habitItem = {};
+      habitItem.label = habit.name;
+      habitItem.value = habit.name;
+      habitItem.key = index;
+      habitList.push(habitItem);
+    });
+  };
+  getHabitList();
+
+  const placeholder = {
+    label: 'Select a habit...',
+    value: null,
+    color: '#9EA0A4',
+  };
+
+  console.log(habitList);
+  return (
+    <View>
+      <RNPickerSelect
+        placeholder={placeholder}
+        items={habitList}
+        onValueChange={(value, index) => {
+          setSelect(value);
+          props.handleSelectedHabit(habits[index - 1]);
+        }}
+        style={pickerSelectStyles}
+        value={habitSelector}
+      />
+    </View>
+  );
+};
+
+export default SelectHabit;
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'brown',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
