@@ -33,8 +33,6 @@ export default class ViewHabit extends Component {
       dailyInfo,
       checkList
     );
-    console.log(weeklyGoal);
-    console.log(habit);
     return (
       <View>
         <Text style={ViewHabitStyles.title}>{name}</Text>

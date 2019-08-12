@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
-import { Container } from '../components/Container';
 import { ProgressCharts } from '../components/ProgressCharts';
 import { SelectHabit } from '../components/SelectHabit';
 
