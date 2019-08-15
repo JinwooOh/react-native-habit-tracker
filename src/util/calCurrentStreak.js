@@ -34,17 +34,17 @@ const calCurrentStreak = props => {
         // CHECK SUNDAY IS CUR  (index is = 0)
         console.log('curDate', curDate.day());
         console.log('nextDate', nextDate.day());
-        const curDay = curDate.day();
-        if (curDay === 0) {
-          // do some checking! between cur and next
-        } else {
-          for (let i = nextDate.day() + 1; i < curDate.day(); i++) {
-            console.log('i: ', i);
-            if (dailyInfo[i]) {
-              console.log('stop');
-              stop = true;
-              break;
-            }
+        let curDay = curDate.day();
+        const nextDay = nextDate.day();
+        if (curDay < nextDay) {
+          curDay += 7;
+        }
+        for (let i = nextDay + 1; i < curDay; i++) {
+          console.log('i: ', i);
+          if (dailyInfo[i]) {
+            console.log('stop');
+            stop = true;
+            break;
           }
         }
       }
