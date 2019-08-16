@@ -1,8 +1,9 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import Main from './src/index';
-import store from './src/config/store';
+import { store, persistor } from './src/config/store';
 
 EStyleSheet.build({
   $primaryBlue: '#4F6D7A',
@@ -19,7 +20,9 @@ EStyleSheet.build({
 export default function App() {
   return (
     <Provider store={store}>
-      <Main />
+      <PersistGate persistor={persistor}>
+        <Main />
+      </PersistGate>
     </Provider>
   );
 }

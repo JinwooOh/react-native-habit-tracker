@@ -3,7 +3,7 @@ import moment from 'moment';
 const calCompletionRate = (habitInfo, newCheckList) => {
   console.log(habitInfo);
   const { startDate, dailyInfo } = habitInfo;
-  const start = startDate.startOf('days');
+  const start = moment(startDate).startOf('days');
   const end = moment().startOf('days');
 
   let totalDays = 0;

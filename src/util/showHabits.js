@@ -1,6 +1,11 @@
+import moment from 'moment';
+
 export const showHabits = (selectedDate, habits) => {
+  console.log(selectedDate, habits);
   const startDateFilter = habits.filter(habit =>
-    habit.startDate.startOf('day').isSameOrBefore(selectedDate.startOf('day'))
+    moment(habit.startDate)
+      .startOf('day')
+      .isSameOrBefore(selectedDate.startOf('day'))
   );
 
   const dayOfWeekFilter = startDateFilter.filter(habit => {

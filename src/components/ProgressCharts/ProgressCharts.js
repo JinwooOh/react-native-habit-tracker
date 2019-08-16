@@ -8,11 +8,12 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from 'react-native-chart-kit';
+import moment from 'moment';
 
 const ProgressCharts = props => {
   console.log(props.habitList);
   const thisWeek = props.habitList.reduce((acc, cur) => {
-    if (cur.startDate.isBefore(acc.startDate)) {
+    if (moment(cur.startDate).isBefore(acc.startDate)) {
       return cur;
     }
     return acc;
