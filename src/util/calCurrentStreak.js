@@ -20,7 +20,9 @@ const calCurrentStreak = props => {
     // 3. grap two day and see if there is t value between them
     // most cur is 0 index
     const sortedCheckList = checkList
-      .sort((a, b) => a.format('YYYYMMDD') - b.format('YYYYMMDD'))
+      .sort(
+        (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
+      )
       .reverse();
 
     let stop = false;
@@ -32,10 +34,8 @@ const calCurrentStreak = props => {
       const nextDate = sortedCheckList[index];
       if (nextDate !== undefined) {
         // CHECK SUNDAY IS CUR  (index is = 0)
-        console.log('curDate', curDate.day());
-        console.log('nextDate', nextDate.day());
-        let curDay = curDate.day();
-        const nextDay = nextDate.day();
+        let curDay = moment(curDate).day();
+        const nextDay = moment(nextDate).day();
         if (curDay < nextDay) {
           curDay += 7;
         }
@@ -51,12 +51,12 @@ const calCurrentStreak = props => {
       curDate = nextDate;
     }
     console.log(streak);
+    return streak;
 
     // calculate from dailyInfo
-  } else {
-    // calculate from weeklyInfo
-    // just calculate sequence
   }
+  // calculate from weeklyInfo
+  // just calculate sequence
 };
 
 export default calCurrentStreak;

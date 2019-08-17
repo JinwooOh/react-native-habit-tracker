@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
               );
               newCheckList.splice(itemIndex, 1);
             } else {
-              newCheckList.push(action.date);
+              newCheckList.push(moment(action.date));
             }
 
             // const newCheckList = { ...item.checkList };

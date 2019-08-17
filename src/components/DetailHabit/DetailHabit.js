@@ -4,14 +4,13 @@ import moment from 'moment';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import styles from './styles';
 import { DeleteHabit } from '../DeleteHabit';
-import calCompletionRate from '../../util/calCompletionRate';
 import calCurrentStreak from '../../util/calCurrentStreak';
 
 const checkedDateForCalendar = checkedDate => {
   const result = {};
   checkedDate.map(
     date =>
-      (result[date.format('YYYY-MM-DD')] = {
+      (result[moment(date).format('YYYY-MM-DD')] = {
         marked: true,
         dotColor: 'red',
         activeOpacity: 0,
@@ -23,16 +22,16 @@ const checkedDateForCalendar = checkedDate => {
 
 const DetailHabit = props => {
   const { done, goal, habit } = props;
-  console.log('dfadsfasdfasdf', habit.checkList);
   // isDaily, weeklyInfo, dailyInfo, checkList
-  calCurrentStreak({ ...props, done, goal });
+  const currentStreak = calCurrentStreak({ ...props, done, goal });
+  console.log('curStreak: ', currentStreak);
   console.log(props);
   return (
     <View>
       <View style={styles.infoContainer}>
         <View style={styles.card}>
           <Text style={styles.text}>Current Streak</Text>
-          <Text style={styles.infoText}>0</Text>
+          <Text style={styles.infoText}>{currentStreak}</Text>
         </View>
 
         <View style={styles.card}>
