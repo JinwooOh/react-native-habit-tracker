@@ -34,7 +34,9 @@ const reducer = (state = initialState, action) => {
             if (isDateInCheckList(newCheckList, action.date)) {
               // remove item from the array
               const itemIndex = newCheckList.findIndex(i =>
-                i.startOf('day').isSame(action.date.startOf('day'))
+                moment(i)
+                  .startOf('day')
+                  .isSame(action.date.startOf('day'))
               );
               newCheckList.splice(itemIndex, 1);
             } else {

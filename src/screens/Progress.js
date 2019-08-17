@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { ProgressCharts } from '../components/ProgressCharts';
 import { SelectHabit } from '../components/SelectHabit';
+import { DetailHabit } from '../components/DetailHabit';
+import { calculateWeeklyGoal } from '../util/calculateWeeklyGoal';
 
 class Progress extends Component {
   state = {
@@ -13,8 +15,12 @@ class Progress extends Component {
     this.setState({ selectedHabit: { ...habit } });
   };
 
+  hasSelected = () => Object.keys(this.state.selectedHabit).length !== 0;
+
   render() {
     const { habitList } = this.props;
+    const { selectedHabit } = this.state;
+
     return (
       <ScrollView>
         <SafeAreaView>
@@ -23,7 +29,16 @@ class Progress extends Component {
             habits={habitList}
             handleSelectedHabit={this.handleSelectedHabit}
           />
-          <ProgressCharts habitList={habitList} />
+          {this.hasSelected() ? (
+            <DetailHabit
+              {...this.props}
+              habit={selectedHabit}
+              done={2}
+              goal={3}
+            />
+          ) : null}
+
+          {/* <ProgressCharts habitList={habitList} /> */}
         </SafeAreaView>
       </ScrollView>
     );

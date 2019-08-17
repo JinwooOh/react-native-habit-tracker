@@ -37,15 +37,13 @@ const DetailHabit = props => {
         <View style={styles.card}>
           <Text style={styles.text}>Weekly Goal</Text>
           <Text style={styles.infoText}>
-            {props.done} / {props.goal}
+            {done} / {goal}
           </Text>
         </View>
 
         <View style={styles.card}>
           <Text style={styles.text}>Completion Rate</Text>
-          <Text style={styles.infoText}>
-            {props.habit.completionRate || 0}%
-          </Text>
+          <Text style={styles.infoText}>{habit.completionRate || 0}%</Text>
         </View>
       </View>
       <Calendar
@@ -59,9 +57,9 @@ const DetailHabit = props => {
         }}
         disableMonthChange
         firstDay={0}
-        markedDates={checkedDateForCalendar(props.habit.checkList)}
+        markedDates={checkedDateForCalendar(habit.checkList)}
       />
-      <DeleteHabit habit={props.habit} {...props} />
+      <DeleteHabit habit={habit} {...props} />
     </View>
   );
 };

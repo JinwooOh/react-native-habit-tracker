@@ -10,6 +10,7 @@ import Progress from './screens/Progress';
 import SelectRepeat from './screens/SelectRepeat';
 import ViewHabit from './screens/ViewHabit';
 import { DeleteHabit } from './components/DeleteHabit';
+// import clipboard from './img/clipboard';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -21,7 +22,7 @@ const HomeStack = createStackNavigator({
   AddHabit: {
     screen: AddHabit,
     navigationOptions: {
-      headerTitle: 'New Habit',
+      headerTitle: 'Add Habit',
       headerTitleStyle: {
         color: '#343434',
       },
