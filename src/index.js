@@ -10,6 +10,7 @@ import Progress from './screens/Progress';
 import SelectRepeat from './screens/SelectRepeat';
 import ViewHabit from './screens/ViewHabit';
 import { DeleteHabit } from './components/DeleteHabit';
+
 // import clipboard from './img/clipboard';
 
 const HomeStack = createStackNavigator({
@@ -51,6 +52,7 @@ const SettingStack = createStackNavigator({
 const ProgressStack = createStackNavigator({
   Progress: {
     screen: Progress,
+
     navigationOptions: {
       header: () => null,
     },
@@ -63,11 +65,13 @@ const RootStack = createBottomTabNavigator({
   },
   Progress: {
     screen: ProgressStack,
+    navigationOptions: {
+      title: 'Habit List',
+    },
   },
   // Settings: {
   //   screen: SettingStack,
   // },
 });
 
-// const App = createAppContainer(RootStack);
 export default createAppContainer(RootStack);

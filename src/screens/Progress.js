@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
-import { ProgressCharts } from '../components/ProgressCharts';
+// import { ProgressCharts } from '../components/ProgressCharts';
 import { SelectHabit } from '../components/SelectHabit';
 import { DetailHabit } from '../components/DetailHabit';
-import { calculateWeeklyGoal } from '../util/calculateWeeklyGoal';
+// import { calculateWeeklyGoal } from '../util/calculateWeeklyGoal';
 
 class Progress extends Component {
   state = {
@@ -24,7 +24,6 @@ class Progress extends Component {
     return (
       <ScrollView>
         <SafeAreaView>
-          <Text> Progress 😃 </Text>
           <SelectHabit
             habits={habitList}
             handleSelectedHabit={this.handleSelectedHabit}

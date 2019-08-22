@@ -9,61 +9,50 @@ const calCurrentStreak = props => {
   if (habit.isDaily) {
     // compare with checkList and dailyInfo
     const { done, dailyInfo, checkList } = habit;
-    console.log(habit.checkList);
     const todayDayOfWeek = moment(Date.now()).day();
 
-    // [t,t,f,t,t,t,t]
-    // 0 1 2 3 4 5 6
-    // [{}, {}, {}, {}...]
-    // 1. reverse checklist
-    // 2. iterate checkList
-    // 3. grap two day and see if there is t value between them
-    // most cur is 0 index
-    const sortedCheckList = checkList
-      .sort(
-        (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
-      )
-      .reverse();
+    // make an array of checkdays
+    // [09/33, 09/22 09/11...]
+    // from startday to today
+    const start = moment(habit.startDate).startOf('days');
+    const end = moment().startOf('days');
 
-    let stop = false;
-    let index = 0;
-    let curDate = sortedCheckList[index];
-    while (curDate && !stop) {
-      index += 1;
-      streak += 1;
-      const nextDate = sortedCheckList[index];
-      if (nextDate !== undefined) {
-        // CHECK SUNDAY IS CUR  (index is = 0)
-        let curDay = moment(curDate).day();
-        const nextDay = moment(nextDate).day();
-        if (curDay < nextDay) {
-          curDay += 7;
+    // Make a check list from dailyInfo
+    const CheckListinDates = [];
+    dailyInfo.forEach((info, index) => {
+      if (info === true) {
+        let current = start.clone();
+        if (current.isoWeekday() <= index) {
+          current = current.isoWeekday(index);
+        } else {
+          current.add(1, 'weeks').isoWeekday(index);
         }
-        for (let i = nextDay + 1; i < curDay; i++) {
-          console.log('i: ', i);
-          if (dailyInfo[i]) {
-            console.log('stop');
-            stop = true;
-            break;
-          }
+        while (current.isSameOrBefore(end)) {
+          CheckListinDates.push(moment(current).format());
+          current.day(7 + index);
         }
       }
-      curDate = nextDate;
-    }
-    console.log(streak);
-    return streak;
+    });
 
-    // calculate from dailyInfo
+    // Make a checked list from checkList
+    const sortedCheckList = [...checkList].sort(
+      (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
+    );
+
+    // Compare those two lists
+    while (sortedCheckList.length !== 0) {
+      const curChecked = sortedCheckList.pop();
+      const curInfo = CheckListinDates.pop();
+      console.log('curChecked', curChecked);
+      console.log('curInfo', curInfo);
+      if (moment(curChecked).isSame(curInfo, 'day')) {
+        streak += 1;
+      } else {
+        break;
+      }
+    }
+    return streak;
   }
-  // calculate from weeklyInfo
-  // just calculate sequence
 };
 
 export default calCurrentStreak;
-
-// goal int
-// weeklyinfo int
-// dailyinfo array of boolean
-// checkList array of moment
-
-// done

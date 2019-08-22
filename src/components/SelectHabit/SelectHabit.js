@@ -45,14 +45,16 @@ export default SelectHabit;
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
+    margin: 8,
     fontSize: 16,
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'lightgray',
     borderRadius: 4,
-    color: 'black',
+    color: 'grey',
     paddingRight: 30, // to ensure the text is never behind the icon
+    textAlign: 'center',
   },
   inputAndroid: {
     fontSize: 16,
