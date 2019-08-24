@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { ProgressCharts } from '../components/ProgressCharts';
 import { SelectHabit } from '../components/SelectHabit';
 import { DetailHabit } from '../components/DetailHabit';
-// import { calculateWeeklyGoal } from '../util/calculateWeeklyGoal';
+import { calculateWeeklyGoal } from '../util/calculateWeeklyGoal';
 
 class Progress extends Component {
   state = {
@@ -20,6 +20,21 @@ class Progress extends Component {
   render() {
     const { habitList } = this.props;
     const { selectedHabit } = this.state;
+    const {
+      name,
+      startDate,
+      isDaily,
+      dailyInfo,
+      weeklyInfo,
+      checkList,
+    } = selectedHabit;
+    const weeklyGoal = calculateWeeklyGoal(
+      isDaily,
+      weeklyInfo,
+      dailyInfo,
+      checkList
+    );
+    console.log('wg:', weeklyGoal);
 
     return (
       <ScrollView>
@@ -32,8 +47,8 @@ class Progress extends Component {
             <DetailHabit
               {...this.props}
               habit={selectedHabit}
-              done={2}
-              goal={3}
+              done={weeklyGoal.done}
+              goal={weeklyGoal.goal}
             />
           ) : null}
 

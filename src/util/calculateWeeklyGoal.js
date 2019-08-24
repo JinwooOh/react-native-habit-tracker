@@ -7,6 +7,9 @@ export const calculateWeeklyGoal = (
   checkList
 ) => {
   const result = { done: 0, goal: 0 };
+  if (!dailyInfo || !weeklyInfo) {
+    return result;
+  }
   const startDate = moment().startOf('week');
   const endDate = moment().endOf('week');
   if (isDaily) {
