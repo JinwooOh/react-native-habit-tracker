@@ -18,7 +18,7 @@ const calCurrentStreak = props => {
     const end = moment().startOf('days');
 
     // Make a check list from dailyInfo
-    const CheckListinDates = [];
+    const checkListinDates = [];
     dailyInfo.forEach((info, index) => {
       if (info === true) {
         let current = start.clone();
@@ -28,7 +28,7 @@ const calCurrentStreak = props => {
           current.add(1, 'weeks').isoWeekday(index);
         }
         while (current.isSameOrBefore(end)) {
-          CheckListinDates.push(moment(current).format());
+          checkListinDates.push(moment(current).format());
           current.day(7 + index);
         }
       }
@@ -42,7 +42,7 @@ const calCurrentStreak = props => {
     // Compare those two lists
     while (sortedCheckList.length !== 0) {
       const curChecked = sortedCheckList.pop();
-      const curInfo = CheckListinDates.pop();
+      const curInfo = checkListinDates.pop();
       console.log('curChecked', curChecked);
       console.log('curInfo', curInfo);
       if (moment(curChecked).isSame(curInfo, 'day')) {
@@ -53,6 +53,45 @@ const calCurrentStreak = props => {
     }
     return streak;
   }
+
+  const { checkList, weeklyInfo } = habit;
+  // Weekly streak
+  let startWeek = moment(habit.startDate).week();
+  const endWeek = moment().week();
+  console.log(startWeek);
+  console.log(endWeek);
+  const checkListinDates = [];
+  while (startWeek !== endWeek + 1) {
+    for (let i = 0; i < weeklyInfo; i++) {
+      checkListinDates.push(startWeek);
+    }
+    startWeek += 1;
+  }
+
+  // Make a checked list from checkList
+  const sortedCheckList = [...checkList].sort(
+    (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
+  );
+
+  console.log(checkListinDates);
+  console.log(sortedCheckList);
+
+  while (sortedCheckList.length !== 0) {
+    const curChecked = moment(sortedCheckList.pop()).week();
+    const curInfo = checkListinDates.pop();
+    console.log('curChecked: ', curChecked);
+    console.log('curInfo: ', curInfo);
+    if (curChecked === curInfo) {
+      streak += 1;
+    }
+    if (curChecked < curInfo) {
+      break;
+    }
+    if (curChecked > curInfo) {
+      checkListinDates.push(curInfo);
+    }
+  }
+  return streak;
 };
 
 export default calCurrentStreak;
