@@ -4,7 +4,6 @@ import moment from 'moment';
 const calCurrentStreak = props => {
   const { habit, done, goal } = props;
   let streak = 0;
-  console.log(habit, done, goal);
 
   if (habit.isDaily) {
     // compare with checkList and dailyInfo
@@ -43,8 +42,7 @@ const calCurrentStreak = props => {
     while (sortedCheckList.length !== 0) {
       const curChecked = sortedCheckList.pop();
       const curInfo = checkListinDates.pop();
-      console.log('curChecked', curChecked);
-      console.log('curInfo', curInfo);
+
       if (moment(curChecked).isSame(curInfo, 'day')) {
         streak += 1;
       } else {
@@ -58,8 +56,7 @@ const calCurrentStreak = props => {
   // Weekly streak
   let startWeek = moment(habit.startDate).week();
   const endWeek = moment().week();
-  console.log(startWeek);
-  console.log(endWeek);
+
   const checkListinDates = [];
   while (startWeek !== endWeek + 1) {
     for (let i = 0; i < weeklyInfo; i++) {
@@ -73,14 +70,10 @@ const calCurrentStreak = props => {
     (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
   );
 
-  console.log(checkListinDates);
-  console.log(sortedCheckList);
-
   while (sortedCheckList.length !== 0) {
     const curChecked = moment(sortedCheckList.pop()).week();
     const curInfo = checkListinDates.pop();
-    console.log('curChecked: ', curChecked);
-    console.log('curInfo: ', curInfo);
+
     if (curChecked === curInfo) {
       streak += 1;
     }

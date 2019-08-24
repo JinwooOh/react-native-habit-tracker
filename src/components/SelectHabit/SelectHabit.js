@@ -24,7 +24,6 @@ const SelectHabit = props => {
     color: '#9EA0A4',
   };
 
-  console.log(habitList);
   return (
     <View>
       <RNPickerSelect

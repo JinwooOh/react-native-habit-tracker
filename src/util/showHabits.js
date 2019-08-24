@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 export const showHabits = (selectedDate, habits) => {
-  console.log(selectedDate, habits);
   const startDateFilter = habits.filter(habit =>
     moment(habit.startDate)
       .startOf('day')
