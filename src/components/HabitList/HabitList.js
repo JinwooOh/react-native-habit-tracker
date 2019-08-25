@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -38,7 +38,7 @@ class HabitList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {showHabits(this.props.date, this.props.habitList).map(habit => (
           <View
             style={styles.habitItemContainer}
@@ -62,7 +62,7 @@ class HabitList extends Component {
             </View>
           </View>
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }

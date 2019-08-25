@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import moment from 'moment';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { DetailHabit } from '../components/DetailHabit';
@@ -34,7 +34,7 @@ export default class ViewHabit extends Component {
       checkList
     );
     return (
-      <View>
+      <ScrollView>
         <Text style={ViewHabitStyles.title}>{name}</Text>
         <DetailHabit
           {...this.props}
@@ -42,7 +42,7 @@ export default class ViewHabit extends Component {
           done={weeklyGoal.done}
           goal={weeklyGoal.goal}
         />
-      </View>
+      </ScrollView>
     );
   }
 }

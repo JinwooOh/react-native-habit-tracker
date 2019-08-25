@@ -2,6 +2,7 @@ import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import { SafeAreaView } from 'react-native';
 import Main from './src/index';
 import { store, persistor } from './src/config/store';
 

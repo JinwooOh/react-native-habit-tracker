@@ -59,19 +59,30 @@ const ProgressStack = createStackNavigator({
   },
 });
 
-const RootStack = createBottomTabNavigator({
-  Home: {
-    screen: HomeStack,
-  },
-  Progress: {
-    screen: ProgressStack,
-    navigationOptions: {
-      title: 'Habit List',
+const RootStack = createBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeStack,
     },
+    Progress: {
+      screen: ProgressStack,
+      navigationOptions: {
+        title: 'Habit List',
+      },
+    },
+
+    // Settings: {
+    //   screen: SettingStack,
+    // },
   },
-  // Settings: {
-  //   screen: SettingStack,
-  // },
-});
+  {
+    tabBarOptions: {
+      style: {
+        paddingBottom: 16,
+        paddingTop: 16,
+      },
+    },
+  }
+);
 
 export default createAppContainer(RootStack);
