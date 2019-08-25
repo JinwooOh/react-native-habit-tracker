@@ -28,6 +28,7 @@ class Progress extends Component {
       weeklyInfo,
       checkList,
     } = selectedHabit;
+
     const weeklyGoal = calculateWeeklyGoal(
       isDaily,
       weeklyInfo,

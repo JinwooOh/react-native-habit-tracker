@@ -17,7 +17,7 @@ const calCurrentStreak = props => {
     const end = moment().startOf('days');
 
     // Make a check list from dailyInfo
-    const checkListinDates = [];
+    let checkListinDates = [];
     dailyInfo.forEach((info, index) => {
       if (info === true) {
         let current = start.clone();
@@ -37,6 +37,9 @@ const calCurrentStreak = props => {
     const sortedCheckList = [...checkList].sort(
       (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
     );
+    checkListinDates = [...checkListinDates].sort(
+      (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
+    );
 
     // Compare those two lists
     while (sortedCheckList.length !== 0) {
@@ -49,6 +52,7 @@ const calCurrentStreak = props => {
         break;
       }
     }
+    console.log(streak);
     return streak;
   }
 
@@ -58,22 +62,31 @@ const calCurrentStreak = props => {
   const endWeek = moment().week();
 
   const checkListinDates = [];
-  while (startWeek !== endWeek + 1) {
+  while (startWeek !== endWeek) {
     for (let i = 0; i < weeklyInfo; i++) {
       checkListinDates.push(startWeek);
     }
     startWeek += 1;
+  }
+  const takeSmallerDays =
+    moment().day() < weeklyInfo ? moment().day() : weeklyInfo;
+  console.log(moment().day());
+  for (let i = 0; i <= takeSmallerDays; i++) {
+    checkListinDates.push(startWeek);
   }
 
   // Make a checked list from checkList
   const sortedCheckList = [...checkList].sort(
     (a, b) => moment(a).format('YYYYMMDD') - moment(b).format('YYYYMMDD')
   );
+  // console.log(checkListinDates);
+  // console.log(sortedCheckList);
 
   while (sortedCheckList.length !== 0) {
     const curChecked = moment(sortedCheckList.pop()).week();
     const curInfo = checkListinDates.pop();
-
+    console.log(curChecked);
+    console.log(curInfo);
     if (curChecked === curInfo) {
       streak += 1;
     }
